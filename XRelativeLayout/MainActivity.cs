@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
+using System;
+using Android.Content;
 
 namespace XRelativeLayout
 {
@@ -13,26 +15,42 @@ namespace XRelativeLayout
             SetContentView(Resource.Layout.Main);
             Button btnConvertir = FindViewById<Button>
                 (Resource.Id.btnconvertir);
-            EditText txtDolares = FindViewById<EditText>
-                (Resource.Id.txtdolares);
-            EditText txtBolivares = FindViewById<EditText>
-                (Resource.Id.txtbolos);
-            double bolivar, dolares;
+            EditText txtIngresosC = FindViewById<EditText>
+                (Resource.Id.txtingresosC);
+            EditText txtEgresosC = FindViewById<EditText>
+                (Resource.Id.txtegresosC);
+            EditText txtIngresoV = FindViewById<EditText>
+                (Resource.Id.txtingresoV);
+            EditText txtEgresoV = FindViewById<EditText>
+                (Resource.Id.txtegresoV);
+            //double IngresosC, IngresosV, EgresosC, EgresosV;
             btnConvertir.Click += delegate
             {
                 try
                 {
-                    dolares = double.Parse(txtDolares.Text);
-                    bolivar = dolares * 1758;
-                    txtBolivares.Text = bolivar.ToString();
+                    //IngresosC = double.Parse(txtIngresosC.Text);
+                    //IngresosV= double.Parse(txtIngresoV.Text);
+                    //EgresosC = double.Parse(txtEgresosC.Text);
+                    //EgresosV = double.Parse(txtEgresoV.Text);
+                    //CapitalC = IngresosC - EgresosC;
+                    //CapitalV = IngresosV - EgresosV;
+                    Cargar();
                 }
                 catch (System.Exception ex)
                 {
                     Toast.MakeText(this, ex.Message, ToastLength.Short).Show();
-                    throw;
                 }
             };
 
+        }
+
+        public void Cargar()
+        {
+            Intent objIntent = new Intent(this, typeof(VistaCapital));
+            objIntent.PutExtra("MyData", "Data from Activity1");
+            //objIntent.PutExtra("CapitalC", CapitalC);
+            //objIntent.PutExtra("CapitalV", CapitalV);
+            StartActivity(objIntent);
         }
     }
 }
