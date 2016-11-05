@@ -63,6 +63,12 @@ namespace XRelativeLayout
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f050002
+			public const int btnconvertir = 2131034114;
+			
+			// aapt resource value: 0x7f050001
+			public const int txtbolos = 2131034113;
+			
 			// aapt resource value: 0x7f050000
 			public const int txtdolares = 2131034112;
 			
