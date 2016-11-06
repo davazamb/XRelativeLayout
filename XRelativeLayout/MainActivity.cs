@@ -3,6 +3,8 @@ using Android.Widget;
 using Android.OS;
 using System;
 using Android.Content;
+using System.IO;
+using SQLite;
 
 namespace XRelativeLayout
 {
@@ -14,6 +16,12 @@ namespace XRelativeLayout
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Main);
+            //Conexion de Base de datos SQLite
+            var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            path = Path.Combine(path, "Base.db3");
+            var conn = new SQLiteConnection(path);
+            conn.CreateTable<Informacion>();
+
             Button btnConvertir = FindViewById<Button>
                 (Resource.Id.btnconvertir);
             EditText txtIngresosC = FindViewById<EditText>
@@ -35,6 +43,16 @@ namespace XRelativeLayout
                     EgresosV = double.Parse(txtEgresoV.Text);
                     CapitalC = IngresosC - EgresosC;
                     CapitalV = IngresosV - EgresosV;
+                    //Datos guardar en SQLite
+                    var Insertar = new Informacion();
+                    Insertar.IngresosColombia = IngresosC;
+                    Insertar.IngresosVenezuela = IngresosV;
+                    Insertar.EgresosColombia = EgresosC;
+                    Insertar.EgresosVenezuela = EgresosV;
+                    //Variable de conexion
+                    conn.Insert(Insertar);
+                    //Mensaje
+                    Toast.MakeText(this, "Guardado en SQLite", ToastLength.Short).Show();
                     Cargar();
                 }
                 catch (System.Exception ex)
@@ -52,6 +70,13 @@ namespace XRelativeLayout
             objIntent.PutExtra("CapitalV", CapitalV);
             StartActivity(objIntent);
         }
+    }
+    public class Informacion
+    {
+        public double IngresosColombia { get; set; }
+        public double IngresosVenezuela { get; set; }
+        public double EgresosColombia { get; set; }
+        public double EgresosVenezuela { get; set; }
     }
 }
 
