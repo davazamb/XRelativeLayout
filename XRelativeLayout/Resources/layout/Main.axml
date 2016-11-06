@@ -6,7 +6,7 @@
     android:paddingRight="16dp"
     android:background="@drawable/Fondo">
     <TextView
-        android:text="Capital"
+        android:text="Capital Contable"
         android:layout_width="300dp"
         android:layout_height="80dp"
         android:gravity="center" />
@@ -36,14 +36,16 @@
         android:gravity="center" />
     <EditText
         android:text="0"
+        android:numeric="integer"
+        android:inputType="number"
         android:id="@+id/txtegresosC"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
         android:layout_alignParentRight="true"
         android:gravity="center" />
-  <!--Otras monedas-->
-      <TextView
+<!--Otras monedas-->
+    <TextView
         android:text="Ingresos Venezuela"
         android:layout_width="80dp"
         android:layout_height="50dp"
@@ -69,20 +71,21 @@
         android:gravity="center" />
     <EditText
         android:text="0"
+        android:numeric="integer"
+        android:inputType="number"
         android:id="@+id/txtegresoV"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="230dp"
         android:layout_alignParentRight="true"
         android:gravity="center" />
-  
     <Button
-        android:text="Convertir"
+        android:text="Calcular"
         android:id="@+id/btnconvertir"
         android:background="#FFFF1111"
         android:layout_width="130dp"
         android:layout_height="60dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="300dp"
         android:layout_alignParentRight="true"
         android:gravity="center" />
 </RelativeLayout>

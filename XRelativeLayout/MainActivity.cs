@@ -9,9 +9,10 @@ namespace XRelativeLayout
     [Activity(Label = "XRelativeLayout", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-        protected override void OnCreate(Bundle bundle)
+        double IngresosC, IngresosV, EgresosC, EgresosV, CapitalC, CapitalV;
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(bundle);
+            base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Main);
             Button btnConvertir = FindViewById<Button>
                 (Resource.Id.btnconvertir);
@@ -23,17 +24,17 @@ namespace XRelativeLayout
                 (Resource.Id.txtingresoV);
             EditText txtEgresoV = FindViewById<EditText>
                 (Resource.Id.txtegresoV);
-            //double IngresosC, IngresosV, EgresosC, EgresosV;
+            
             btnConvertir.Click += delegate
             {
                 try
                 {
-                    //IngresosC = double.Parse(txtIngresosC.Text);
-                    //IngresosV= double.Parse(txtIngresoV.Text);
-                    //EgresosC = double.Parse(txtEgresosC.Text);
-                    //EgresosV = double.Parse(txtEgresoV.Text);
-                    //CapitalC = IngresosC - EgresosC;
-                    //CapitalV = IngresosV - EgresosV;
+                    IngresosC = double.Parse(txtIngresosC.Text);
+                    IngresosV = double.Parse(txtIngresoV.Text);
+                    EgresosC = double.Parse(txtEgresosC.Text);
+                    EgresosV = double.Parse(txtEgresoV.Text);
+                    CapitalC = IngresosC - EgresosC;
+                    CapitalV = IngresosV - EgresosV;
                     Cargar();
                 }
                 catch (System.Exception ex)
@@ -47,9 +48,8 @@ namespace XRelativeLayout
         public void Cargar()
         {
             Intent objIntent = new Intent(this, typeof(VistaCapital));
-            objIntent.PutExtra("MyData", "Data from Activity1");
-            //objIntent.PutExtra("CapitalC", CapitalC);
-            //objIntent.PutExtra("CapitalV", CapitalV);
+            objIntent.PutExtra("CapitalC", CapitalC);
+            objIntent.PutExtra("CapitalV", CapitalV);
             StartActivity(objIntent);
         }
     }

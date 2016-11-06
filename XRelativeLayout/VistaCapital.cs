@@ -28,7 +28,13 @@ namespace XRelativeLayout
                 (Resource.Id.imageCol);
             ImageView ImageVen = FindViewById<ImageView>
                 (Resource.Id.imageVen);
-            Salir();
+            Button btnSalir = FindViewById<Button>
+                (Resource.Id.btnsalir);
+
+            btnSalir.Click += delegate
+            {
+                Salir();
+            };
 
             try
             {
@@ -36,14 +42,17 @@ namespace XRelativeLayout
                 txtCapitalV.Text = Intent.GetDoubleExtra("CapitalV", defaultValue).ToString();
                 ImageCol.SetImageResource(Resource.Drawable.Colombia);
                 ImageVen.SetImageResource(Resource.Drawable.venezuela);
+                
             }
             catch (Exception ex)
             {
                 Toast.MakeText(this, ex.Message, ToastLength.Short).Show();
             }
-        }
+            
 
-        private void Salir()
+            }
+
+        public void Salir()
         {
             Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
         }
